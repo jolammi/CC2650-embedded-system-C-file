@@ -179,7 +179,7 @@ void calibration(char *str, I2C_Handle *i2cMPU, float x_tilt, float y_tilt, floa
     int x_term_timer = 10000;
 
     while (x_term_timer >= 0){
-        mpu9250_get_data(&i2cMPU, &ax, &ay, &az, &gx, &gy, &gz);
+        mpu9250_get_data(&i2cMPU, &ax, &ay, &az, &gx, &gy, &gz);  //read the gyro sensor values and store them in ax, ay, az, gx, gy, gz
         x_term = ax;
         x_term_timer = x_term_timer - 1;
         }
@@ -211,7 +211,7 @@ void calibration(char *str, I2C_Handle *i2cMPU, float x_tilt, float y_tilt, floa
     int y_term_timer = 10000;
     
     while (y_term_timer >= 0){
-        mpu9250_get_data(&i2cMPU, &ax, &ay, &az, &gx, &gy, &gz);
+        mpu9250_get_data(&i2cMPU, &ax, &ay, &az, &gx, &gy, &gz);  //read the gyro sensor values and store them in ax, ay, az, gx, gy, gz
         y_term = ay;
         y_term_timer = y_term_timer - 1;
         
@@ -272,7 +272,7 @@ void main_menu(I2C_Handle *i2cMPU, float x_tilt, float y_tilt, float x_term, flo
 	if (temp <= 68){
 
         while(global_state == MAINMENU){ 
-            mpu9250_get_data(&i2cMPU, &ax, &ay, &az, &gx, &gy, &gz);
+            mpu9250_get_data(&i2cMPU, &ax, &ay, &az, &gx, &gy, &gz);  //read the gyro sensor values and store them in ax, ay, az, gx, gy, gz
        
             if ((ay < -0.1) && (ay < -y_term)) {
                 menu_state = 0;
@@ -298,7 +298,7 @@ void main_menu(I2C_Handle *i2cMPU, float x_tilt, float y_tilt, float x_term, flo
 	
 	else if (temp > 68){
         while(global_state == MAINMENU){ 
-            mpu9250_get_data(&i2cMPU, &ax, &ay, &az, &gx, &gy, &gz);
+            mpu9250_get_data(&i2cMPU, &ax, &ay, &az, &gx, &gy, &gz);  //read the gyro sensor values and store them in ax, ay, az, gx, gy, gz
 
                 
                 if ((ay < -0.1) && (ay < -y_term)) {
@@ -329,7 +329,7 @@ void main_menu(I2C_Handle *i2cMPU, float x_tilt, float y_tilt, float x_term, flo
 	
 void gaming(){
     
-    mpu9250_get_data(&i2cMPU, &ax, &ay, &az, &gx, &gy, &gz);
+    mpu9250_get_data(&i2cMPU, &ax, &ay, &az, &gx, &gy, &gz);  //read the gyro sensor values and store them in ax, ay, az, gx, gy, gz
         
         
         if ((ax > 0.1) && (ax  > x_term) && (global_state == GAME)) {
